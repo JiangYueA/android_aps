@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+        applicationId "com.example.jiangyue.androidaps"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.squareup.picasso:picasso:2.5.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.nhaarman.listviewanimations:lib-core:3.1.0'
+    compile 'se.emilsjolander.stickylistheaders:library:2.1.0'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile files('libs/universal-image-loader-1.9.2.jar')
+    compile files('libs/MobLogCollector.jar')
+    compile files('libs/MobTools.jar')
+    compile files('libs/ShareSDK-Core-2.6.2.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.6.2.jar')
+    /* 5) Use 21 or 22 */
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile files('libs/Rong_IMKit_v2_4_9.jar')
+    /* nuwa */
+//    compile 'cn.jiajixin.nuwa:nuwa:1.0.0'
+}
+//apply plugin: "cn.jiajixin.nuwa"

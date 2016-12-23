@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_customize"
+        android:title="haha" />
+
+    <item android:id="@+id/menu">
+
+        <item
+            android:id="@+id/action_reset"
+            android:title="@string/reset" />
+        <item
+            android:id="@+id/action_open_activities"
+            android:checkable="true" />
+        <item
+            android:id="@+id/action_about"
+            android:title="@string/about" />
+    </item>
+
+
+    <item
+        android:id="@+id/action_fastscroll"
+        android:checkable="true"/>
+
+    <item
+        android:id="@+id/action_addpadding"
+        android:checkable="true"/>
+
+    <item
+        android:id="@+id/action_showShadow"
+        android:checkable="true"/>
+
+    <item
+        android:id="@+id/action_showHeaderAndFooter"
+        android:checkable="true"/>
+
+    <item
+        android:id="@+id/action_updateDataset"
+        />
+
+</menu>

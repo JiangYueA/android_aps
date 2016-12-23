@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 未选中 -->
+    <item android:drawable="@color/stock_in" android:state_checked="false" />
+    <!--选中 -->
+    <item android:drawable="@color/stock_un" android:state_checked="true" />
+</selector>

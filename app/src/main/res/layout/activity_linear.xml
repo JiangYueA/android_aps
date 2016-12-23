@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.example.jiangyue.androidap.views.layout.LinearScrollLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:id="@id/id_scrolllayout_topview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:onClick="onClick"
+            android:paddingBottom="15dp">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:onClick="onClick"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txt_topic_introduce"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="60dp"
+                android:clickable="true"
+                android:maxLines="3"
+                android:onClick="onClick"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="5dp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <com.example.jiangyue.androidap.views.viewpager.ScrollPagerSlidingTabStrip
+            android:id="@id/id_scrolllayout_indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:overScrollMode="never"
+            app:pstsIndicatorHeight="40dp"
+            app:pstsShouldExpand="true"
+            app:pstsTextAllCaps="false"
+            app:pstsUnderlineHeight="0dp" />
+
+        <com.example.jiangyue.androidap.views.viewpager.PagerView
+            android:id="@id/id_scrolllayout_viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:flipInterval="30"
+            android:overScrollMode="never"
+            android:persistentDrawingCache="animation" />
+    </com.example.jiangyue.androidap.views.layout.LinearScrollLayout>
+
+</LinearLayout>

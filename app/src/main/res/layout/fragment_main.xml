@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:listbuddies="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <com.example.jiangyue.androidap.views.jpardogo.views.ListBuddiesLayout xmlns:listbuddies="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/listbuddies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        listbuddies:speed="0"
+        listbuddies:gap="@dimen/gap"
+        listbuddies:listsDivider="@drawable/divider"
+        listbuddies:listsDividerHeight="@dimen/divider_height"
+        listbuddies:gapColor="@android:color/black"
+        listbuddies:autoScrollFaster="right"
+        listbuddies:scrollFaster="left" />
+
+    <!--In case we want to created a listBuddies layout dynamically then we need a container for it-->
+    <!--<FrameLayout-->
+    <!--android:id="@+id/listbuddies_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"/>-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@android:color/black" />
+
+    <com.example.jiangyue.androidap.views.jpardogo.activity.ui.views.DrawInsetsFrameLayout
+        android:id="@+id/insets_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        listbuddies:insetBackground="@color/inset" />
+</FrameLayout>

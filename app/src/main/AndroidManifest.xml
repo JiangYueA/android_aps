@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.jiangyue.androidap">
+
+    <!-- app需要的 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppThemeNo">
+
+        <!-- 表格 -->
+        <activity
+            android:name=".ChartStockActivity"
+            android:label="AChartEngine demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ChartStockLandscapeActivity" />
+        <activity android:name=".chart.activity.XYChartBuilder" />
+        <activity android:name=".chart.activity.PieChartBuilder" />
+        <activity android:name=".chart.GraphicalActivity" />
+        <activity android:name=".chart.activity.view.GeneratedChartDemo" />
+        <activity android:name=".chart.activity.view.ChartDemo" />
+        <!--<activity-->
+        <!--android:name=".ScrollActivity"-->
+        <!--android:label="@string/app_name"-->
+        <!--android:windowSoftInputMode="adjustPan"-->
+        <!--android:launchMode="singleTop">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!-- Share Sdk Activity -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".views.jpardogo.activity.ui.DetailActivity"
+            android:parentActivityName=".views.jpardogo.activity.ui.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.jpardogo.activity.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".views.jpardogo.activity.ui.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName=".views.jpardogo.activity.ui.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.jpardogo.activity.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AppearanceExamplesActivity"
+            android:label="@string/appearance" />
+    </application>
+
+</manifest>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_note_keyboard"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <!-- 编辑部分 -->
+    <ScrollView
+        android:id="@+id/add_note_content_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/add_note_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="top"
+            android:maxLength="300"
+            android:padding="10dp"
+            android:textSize="15sp" />
+    </ScrollView>
+    <!-- 选择部分 -->
+    <LinearLayout
+        android:id="@+id/add_note_chose_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:paddingLeft="27dp"
+            android:paddingRight="27dp"
+            android:text="选择专辑"
+            android:textColor="#000000" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:paddingLeft="27dp"
+            android:paddingRight="27dp"
+            android:text="个人主页可见"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <com.example.jiangyue.androidap.views.imageview.TransitionImageView
+        android:id="@+id/transition_img"
+        android:layout_width="@dimen/img_transition_height"
+        android:layout_height="@dimen/img_transition_height"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/illya" />
+
+</RelativeLayout>

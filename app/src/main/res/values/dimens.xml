@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="drawable_ring_size">4dip</dimen>
+
+    <!-- following -->
+
+    <dimen name="text_size_toolbar_title">25sp</dimen>
+    <dimen name="text_size_profile_toolbar_title">20sp</dimen>
+    <dimen name="corner_radius_oval">16dp</dimen>
+
+    <dimen name="height_toolbar">45dp</dimen>
+    <dimen name="height_profile_image">250dp</dimen>
+
+    <!-- sum of *height_toolbar* and *height_profile_image* -->
+    <dimen name="height_profile_picture_with_toolbar">320dp</dimen>
+
+    <dimen name="size_button_message">60dp</dimen>
+
+    <!-- *height_profile_picture_with_toolbar* - half of *size_button_message* -->
+    <dimen name="margin_top_button_message">290dp</dimen>
+
+    <dimen name="action_menu_radius">96dp</dimen>
+    <dimen name="sub_action_button_content_margin">6dp</dimen>
+    <dimen name="sub_action_button_size">36dp</dimen>
+    <dimen name="radius_small">30dp</dimen>
+    <dimen name="radius_large">120dp</dimen>
+    <dimen name="radius_medium">72dp</dimen>
+
+
+    <dimen name="standar_padding">8dp</dimen>
+    <dimen name="standar_padding_small">4dp</dimen>
+    <dimen name="default_margin_between_lists">3dp</dimen>
+    <dimen name="gap">3dp</dimen>
+    <dimen name="divider_height">@dimen/gap</dimen>
+    <dimen name="item_height_small">150dp</dimen>
+    <dimen name="item_height_tall">220dp</dimen>
+
+    <dimen name="img_transition_height">100dp</dimen>
+</resources>

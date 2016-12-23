@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="id_scrolllayout_topview" type="id" />
+    <item name="id_scrolllayout_viewpager" type="id" />
+    <item name="id_scrolllayout_indicator" type="id" />
+    <item name="id_scrolllayout_innerscrollview01" type="id" />
+    <item name="id_scrolllayout_innerscrollview02" type="id" />
+    <item name="id_scrolllayout_innerscrollview03" type="id" />
+
+    <!-- 图表 -->
+    <item name="id_chart_graphv" type="id" />
+</resources>
