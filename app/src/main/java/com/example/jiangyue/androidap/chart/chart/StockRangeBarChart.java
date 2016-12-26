@@ -124,7 +124,7 @@ public class StockRangeBarChart extends StockBarChart {
         if (mType != Type.STACKED && mType != Type.HEAPED) {
             halfDiffX /= seriesNr;
         }
-        return halfDiffX / getCoeficient();
+        return (float) (halfDiffX / (getCoeficient() * (1 + mRenderer.getBarSpacing())));
     }
 
 

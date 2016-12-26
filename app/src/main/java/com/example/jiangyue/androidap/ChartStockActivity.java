@@ -17,14 +17,12 @@ import com.example.jiangyue.androidap.chart.chart.StockBarChart;
 import com.example.jiangyue.androidap.chart.chart.StockChart;
 import com.example.jiangyue.androidap.chart.chart.StockLinearChart;
 import com.example.jiangyue.androidap.chart.chart.StockRangeBarChart;
-import com.example.jiangyue.androidap.chart.chart.TouchLineChat;
 import com.example.jiangyue.androidap.chart.model.RangeKLineSeries;
 import com.example.jiangyue.androidap.chart.model.XYMultipleSeriesDataset;
 import com.example.jiangyue.androidap.chart.model.XYSeries;
 import com.example.jiangyue.androidap.chart.renderer.XYMultipleSeriesRenderer;
 import com.example.jiangyue.androidap.chart.renderer.XYSeriesRenderer;
 import com.example.jiangyue.androidap.test.DataParse;
-import com.example.jiangyue.androidap.test.DateModel;
 import com.example.jiangyue.androidap.test.KLineBean;
 import com.example.jiangyue.androidap.test.MinutesBean;
 import com.example.jiangyue.androidap.test.Util;
@@ -35,7 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jiangyue on 16/10/20.
@@ -317,73 +314,6 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
         mul15.display();
     }
 
-    /* 初始化图标 */
-    private void showChart(List<DateModel> value01, List<DateModel> value02) {
-        String[] titles = new String[]{"", ""};
-        List<double[]> x = new ArrayList<double[]>();
-        List<double[]> values = new ArrayList<double[]>();
-
-        x.add(new double[value01.size()]);
-        x.add(new double[value01.size()]);
-
-        double[] fundValues = new double[value01.size()];
-        double[] marketValues = new double[value01.size()];
-        values.add(fundValues);
-        values.add(marketValues);
-
-        double minValue = 10000;
-        double maxValue = -10000;
-        double[] date = new double[value01.size()];
-        for (int i = 0, size = value01.size(); i < size; i++) {
-            x.get(0)[i] = i;
-            x.get(1)[i] = i;
-            fundValues[i] = value01.get(i).dValueSeries;
-            marketValues[i] = value02.get(i).dValueSeries;
-            date[i] = value01.get(i).dtDateSeries;
-            //求最小值
-            if (minValue > fundValues[i]) {
-                minValue = fundValues[i];
-            }
-            if (minValue > marketValues[i]) {
-                minValue = marketValues[i];
-            }
-            //求最大值
-            if (maxValue < fundValues[i]) {
-                maxValue = fundValues[i];
-            }
-            if (maxValue < marketValues[i]) {
-                maxValue = marketValues[i];
-            }
-        }
-
-        int[] colors = new int[]{0xfff9513e, 0xff0c7ce5};
-        PointStyle[] styles = new PointStyle[]{PointStyle.POINT, PointStyle.POINT};
-
-        XYMultipleSeriesRenderer renderer = ChartFactory.buildRenderer(colors, styles);
-        ChartFactory.setChartSettings(renderer, "", "", "", 0, value01.size() - 1, minValue, maxValue,
-                Color.GRAY, Color.LTGRAY);
-        renderer.setXLabels(5);
-        renderer.setYLabels(5);
-        renderer.setYValue(date);
-
-        renderer.setMargins(new int[]{DisplayUtil.dp2px(25),
-                DisplayUtil.dp2px(40), DisplayUtil.dp2px(5), DisplayUtil.dp2px(35)});
-        renderer.setLabelsTextSize(DisplayUtil.sp2px(10));
-        renderer.setYLabelsPadding(DisplayUtil.dp2px(13));
-        renderer.setYLabelsVerticalPadding(DisplayUtil.dp2px(-3));
-        renderer.setBackgroundColor(0xffffffff);
-        renderer.setApplyBackgroundColor(true);
-        renderer.setPanEnabled(false);
-        renderer.setZoomButtonsVisible(false);
-        renderer.setZoomEnabled(false, false);
-        renderer.setShowLegend(false);
-        renderer.setInScroll(true);
-
-        TouchLineChat chart = new TouchLineChat(ChartFactory.buildDataset(titles, x, values), renderer);
-        ((GraphicalView) findViewById(R.id.id_chart_graphv)).setChart(chart);
-        (findViewById(R.id.id_chart_graphv)).invalidate();
-    }
-
     private void showStock() {
         DataParse mData = new DataParse();
         JSONObject object = null;
@@ -450,7 +380,7 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
             r.setFillPoints(true);
             r.setLineWidth(3);
         }
-        ChartFactory.setChartSettings(renderer, "", "", "", 0, minuteSize - 1, minValue, maxValue,
+        ChartFactory.setChartSettings(renderer, "", "", "", 0 - 0.5, minuteSize - 1 + 0.5, minValue, maxValue,
                 Color.GRAY, Color.LTGRAY);
 
         renderer.setMargins(new int[]{DisplayUtil.dp2px(15),
@@ -564,7 +494,7 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
             r.setFillPoints(true);
             r.setLineWidth(3);
         }
-        ChartFactory.setChartSettings(renderer, "", "", "", 0, kLineSize - 1, minValue, maxValue,
+        ChartFactory.setChartSettings(renderer, "", "", "", 0 - 0.5, kLineSize - 1 + 0.5, minValue, maxValue,
                 Color.GRAY, Color.LTGRAY);
 
         renderer.setMargins(new int[]{DisplayUtil.dp2px(15),

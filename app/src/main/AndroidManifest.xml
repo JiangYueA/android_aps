@@ -16,7 +16,7 @@
 
         <!-- 表格 -->
         <activity
-            android:name=".ChartStockActivity"
+            android:name=".DemoActivity"
             android:label="AChartEngine demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,25 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChartStockActivity" />
         <activity android:name=".ChartStockLandscapeActivity" />
         <activity android:name=".chart.activity.XYChartBuilder" />
         <activity android:name=".chart.activity.PieChartBuilder" />
         <activity android:name=".chart.GraphicalActivity" />
         <activity android:name=".chart.activity.view.GeneratedChartDemo" />
         <activity android:name=".chart.activity.view.ChartDemo" />
-        <!--<activity-->
-        <!--android:name=".ScrollActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:windowSoftInputMode="adjustPan"-->
-        <!--android:launchMode="singleTop">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN" />-->
-
-        <!--<category android:name="android.intent.category.LAUNCHER" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-
-        <!-- Share Sdk Activity -->
+        <activity android:name=".ProgressActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
