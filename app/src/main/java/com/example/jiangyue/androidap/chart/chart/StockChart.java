@@ -114,7 +114,8 @@ public class StockChart extends XYChart {
         if (mDataset.getSeriesAt(0) != null && touchPoint != null) {
             XYSeries series = mDataset.getSeriesAt(0);
             double percent = (touchPoint.x - left) / (right - left);
-            int pos = (int) (percent * series.getXYMap().size());
+            float size = (float) (mRenderer.getXAxisMax() - mRenderer.getXAxisMin());
+            int pos = (int) (percent * size + mRenderer.getXAxisMin());
             boolean valid = pos < series.getXYMap().size() && pos >= 0;
             //计算坐标
             if (valid) {
@@ -123,7 +124,7 @@ public class StockChart extends XYChart {
                 double i = 1 - (valueY - mRenderer.getYAxisMin()) / (mRenderer.getYAxisMax() - mRenderer.getYAxisMin());
                 circleY = (float) (i * (bottom - top)) + top;
                 //吸附到坐标值位置
-                touchPoint.x = pos * ((right - left) * 1.0f / (series.getXYMap().size() - 1)) + left;
+                touchPoint.x = (pos - (float) mRenderer.getXAxisMin()) * ((right - left) * 1.0f / (size)) + left;
                 Log.e("", pos + "........................." + touchPoint.x);
             } else {
                 touchPoint = null;
@@ -137,7 +138,7 @@ public class StockChart extends XYChart {
         //绘制手势十字星
         drawVerticalLine(canvas, top, bottom);
         drawHorizontalLine(canvas);
-        drawTouchPoint(canvas);
+//        drawTouchPoint(canvas);
 
         //绘制xy轴显示值
         drawXYValueRec(canvas, bottom);
@@ -165,6 +166,7 @@ public class StockChart extends XYChart {
     }
 
     /* 手势长按触发显示移动坐标 */
+    public int loastPoint = 1;//上一个触摸点个数
     private static final int LONG_PRESS_TIMEOUT = 1000;
     private Handler handler = new Handler();
     private boolean canDrawGesView = false;
@@ -191,26 +193,31 @@ public class StockChart extends XYChart {
         }
     };
 
+    /* 移除touch point */
+    public void resetTouchPoint() {
+        touchPoint = null;
+        motionEvent = null;
+        canDrawGesView = false;
+        handler.removeCallbacks(runnable);
+    }
 
-    /**
-     * The old y2 coordinate.
-     */
-    private float oldY2;
-    /**
-     * The old x2 coordinate.
-     */
-    private float oldX2;
 
     @Override
     public void onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
 
-        //判断是否是两个手指缩放
-        if (event.getPointerCount() > 1 && (oldX2 >= 0 || oldY2 >= 0) && mRenderer.isZoomEnabled()) {
-            float newX2 = event.getX(1);
-            float newY2 = event.getY(1);
-            oldX2 = newX2;
-            oldY2 = newY2;
+        //判断是否是两个手指进行缩放移动
+        if ((event.getPointerCount() > 1 && mRenderer.isZoomEnabled()) || loastPoint > 1) {
+            resetTouchPoint();
+            loastPoint = event.getPointerCount();
+            return;
+        }
+
+        //判断手势移动还是长按
+        if (mRenderer.isPanEnabled() && mRenderer.ismChartPaning()) {
+            resetTouchPoint();
+            //重置移动手势
+            mRenderer.setmChartPaning(false);
             return;
         }
 
@@ -224,10 +231,7 @@ public class StockChart extends XYChart {
             }
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
-                touchPoint = null;
-                motionEvent = null;
-                canDrawGesView = false;
-                handler.removeCallbacks(runnable);
+                resetTouchPoint();
                 break;
             }
             case MotionEvent.ACTION_MOVE: {

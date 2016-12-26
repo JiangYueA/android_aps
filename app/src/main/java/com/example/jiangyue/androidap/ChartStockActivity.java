@@ -581,7 +581,7 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
         renderer.setZoomInLimitY(maxValue / 2);
         renderer.setPanLimits(new double[]{0, kLineSize, minValue, maxValue});
         renderer.setPanEnabled(true, false);//移动
-        renderer.setZoomEnabled(true, true);//缩放
+        renderer.setZoomEnabled(true, false);//缩放
         renderer.setZoomButtonsVisible(false);
         renderer.setShowLegend(false);
         renderer.setInScroll(true);

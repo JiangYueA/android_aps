@@ -225,6 +225,19 @@ public class XYMultipleSeriesRenderer extends DefaultRenderer {
     }
 
     /**
+     * The pan translate
+     */
+    private boolean mChartPaning = false;
+
+    public boolean ismChartPaning() {
+        return mChartPaning;
+    }
+
+    public void setmChartPaning(boolean mChartPaning) {
+        this.mChartPaning = mChartPaning;
+    }
+
+    /**
      * An enum for the XY chart orientation of the X axis.
      */
     public enum Orientation {

@@ -17,6 +17,7 @@ package com.example.jiangyue.androidap.chart.tools;
 
 import com.example.jiangyue.androidap.chart.chart.AbstractChart;
 import com.example.jiangyue.androidap.chart.chart.RoundChart;
+import com.example.jiangyue.androidap.chart.chart.StockChart;
 import com.example.jiangyue.androidap.chart.chart.XYChart;
 
 import java.util.ArrayList;
@@ -99,6 +100,12 @@ public class Pan extends AbstractTool {
                         }
                     }
                     if (!limited || (notLimitedLeft && notLimitedRight)) {
+                        //看是否是touch显示内容
+                        if (mChart instanceof StockChart && ((StockChart) mChart).getTouchPoint() != null) {
+                            return;
+                        }
+                        //移动距离大于0
+                        mRenderer.setmChartPaning(Math.abs(deltaX) > 0.2);
                         setXRange(range[0] + deltaX, range[1] + deltaX, i);
                         mRenderer.setmZoomStartPosX(range[0] + deltaX);
                         mRenderer.setmZoomEndPosX(range[1] + deltaX);
