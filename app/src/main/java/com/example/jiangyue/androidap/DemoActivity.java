@@ -37,6 +37,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_scroll: {
+                //固定选择Label
+                Intent intent = new Intent(this, LinearActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }

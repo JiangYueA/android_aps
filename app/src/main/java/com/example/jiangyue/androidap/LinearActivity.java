@@ -61,6 +61,10 @@ public class LinearActivity extends FragmentActivity implements OnListListener {
         });
     }
 
+    public void onClick(View v) {
+
+    }
+
     @Override
     public void onLoading() {
 
