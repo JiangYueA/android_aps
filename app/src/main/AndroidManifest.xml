@@ -32,6 +32,7 @@
         <activity android:name=".chart.activity.view.GeneratedChartDemo" />
         <activity android:name=".chart.activity.view.ChartDemo" />
         <activity android:name=".ProgressActivity"/>
+        <activity android:name=".FollowingActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

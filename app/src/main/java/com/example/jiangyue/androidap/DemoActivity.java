@@ -31,6 +31,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_translate: {
+                //动态切换
+                Intent intent = new Intent(this, FollowingActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }
