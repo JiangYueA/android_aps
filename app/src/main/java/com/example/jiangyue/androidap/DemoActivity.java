@@ -44,7 +44,7 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 break;
             }
             case R.id.btn_tab:{
-                //tab切换页
+                //滑页及循环进度条
                 Intent intent = new Intent(this, MenuActivity.class);
                 startActivity(intent);
                 break;
