@@ -43,9 +43,15 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_tab:{
+            case R.id.btn_tab: {
                 //滑页及循环进度条
                 Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_chat: {
+                //聊天控件
+                Intent intent = new Intent(this, MenuInScrollViewActivity.class);
                 startActivity(intent);
                 break;
             }
