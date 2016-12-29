@@ -43,7 +43,8 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_other:{
+            case R.id.btn_tab:{
+                //tab切换页
                 Intent intent = new Intent(this, MenuActivity.class);
                 startActivity(intent);
                 break;

@@ -33,10 +33,10 @@
         android:text="固定Label" />
 
     <Button
-        android:id="@+id/btn_other"
+        android:id="@+id/btn_tab"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="OTHER" />
+        android:text="滑页及循环进度条" />
 
 </LinearLayout>
