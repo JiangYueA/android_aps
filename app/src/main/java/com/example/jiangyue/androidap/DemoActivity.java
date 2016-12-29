@@ -43,6 +43,11 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_other:{
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }

@@ -34,6 +34,7 @@
         <activity android:name=".ProgressActivity"/>
         <activity android:name=".FollowingActivity"/>
         <activity android:name=".LinearActivity"/>
+        <activity android:name=".MenuActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

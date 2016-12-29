@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.jiangyue.androidap.fragment.FollowingFragment;
 import com.example.jiangyue.androidap.fragment.MyOnTouchListener;
 import com.example.jiangyue.androidap.fragment.OnListListener;
 import com.example.jiangyue.androidap.fragment.SuperAwesomeCardFragment;
@@ -86,7 +85,7 @@ public class MenuActivity extends FragmentActivity implements OnListListener {
 
             Drawable colorDrawable = new ColorDrawable(newColor);
             Drawable bottomDrawable = getResources().getDrawable(R.drawable.actionbar_bottom);
-            LayerDrawable ld = new LayerDrawable(new Drawable[] { colorDrawable, bottomDrawable });
+            LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
 
             if (oldBackground == null) {
 
@@ -98,7 +97,7 @@ public class MenuActivity extends FragmentActivity implements OnListListener {
 
             } else {
 
-                TransitionDrawable td = new TransitionDrawable(new Drawable[] { oldBackground, ld });
+                TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
 
                 // workaround for broken ActionBarContainer drawable handling on
                 // pre-API 17 builds
@@ -167,10 +166,10 @@ public class MenuActivity extends FragmentActivity implements OnListListener {
      */
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = { "消息","营养师", "秤盘", "手表"};
+        private final String[] TITLES = {"消息", "营养师", "秤盘", "手表", "其他"};
 
         private Fragment[] fragments = new Fragment[]{SuperAwesomeCardFragment.newInstance(1),
-                new FollowingFragment(), SuperAwesomeCardFragment.newInstance(3), SuperAwesomeCardFragment.newInstance(4)};
+                SuperAwesomeCardFragment.newInstance(2), SuperAwesomeCardFragment.newInstance(3), SuperAwesomeCardFragment.newInstance(4), SuperAwesomeCardFragment.newInstance(5)};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
