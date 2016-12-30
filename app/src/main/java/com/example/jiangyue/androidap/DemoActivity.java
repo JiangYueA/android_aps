@@ -55,6 +55,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_pinned: {
+                //置顶滚动控件
+                Intent intent = new Intent(this, PinnedSectionListActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }

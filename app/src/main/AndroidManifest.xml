@@ -36,6 +36,7 @@
         <activity android:name=".LinearActivity"/>
         <activity android:name=".MenuActivity"/>
         <activity android:name=".MenuInScrollViewActivity"/>
+        <activity android:name=".PinnedSectionListActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
