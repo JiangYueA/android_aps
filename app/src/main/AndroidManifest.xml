@@ -38,6 +38,8 @@
         <activity android:name=".MenuInScrollViewActivity"/>
         <activity android:name=".PinnedSectionListActivity"/>
         <activity android:name=".ScrollActivity"/>
+        <activity android:name=".MyListActivity"/>
+        <activity android:name=".BaseActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

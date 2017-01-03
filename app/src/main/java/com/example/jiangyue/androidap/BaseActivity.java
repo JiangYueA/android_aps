@@ -34,7 +34,9 @@ public class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         assert getActionBar() != null;
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

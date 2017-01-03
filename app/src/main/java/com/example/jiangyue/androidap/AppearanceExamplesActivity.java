@@ -41,11 +41,13 @@ public class AppearanceExamplesActivity extends MyListActivity implements Action
         setAlphaAdapter();
 
         assert getActionBar() != null;
-        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        if (getActionBar() != null) {
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+            getActionBar().setDisplayShowTitleEnabled(false);
 
-        SpinnerAdapter animSelectionAdapter = new AnimSelectionAdapter(this);
-        getActionBar().setListNavigationCallbacks(animSelectionAdapter, this);
+            SpinnerAdapter animSelectionAdapter = new AnimSelectionAdapter(this);
+            getActionBar().setListNavigationCallbacks(animSelectionAdapter, this);
+        }
     }
 
     private void setAlphaAdapter() {

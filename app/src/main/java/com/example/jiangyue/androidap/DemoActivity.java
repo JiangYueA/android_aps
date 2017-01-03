@@ -67,6 +67,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_list_effect: {
+                //列表滚动效果
+                Intent intent = new Intent(this, AppearanceExamplesActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }
