@@ -61,6 +61,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
+            case R.id.btn_avatar: {
+                //点击头像位置缩放
+                Intent intent = new Intent(this, ScrollActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 }
