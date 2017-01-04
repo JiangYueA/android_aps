@@ -2,8 +2,8 @@ package com.example.jiangyue.androidap.views.jpardogo.activity.Utils;
 
 import android.content.SharedPreferences;
 
+import com.example.jiangyue.androidap.MyApplication;
 import com.example.jiangyue.androidap.R;
-import com.example.jiangyue.androidap.views.jpardogo.activity.ListBuddies;
 import com.example.jiangyue.androidap.views.jpardogo.activity.provider.SharedPrefFiles;
 import com.example.jiangyue.androidap.views.jpardogo.activity.provider.SharedPrefKeys;
 import com.example.jiangyue.androidap.views.jpardogo.views.ListBuddiesLayout;
@@ -28,20 +28,20 @@ public class SharePreferences {
     }
 
     private static SharedPreferences getCustomizePref() {
-        return ListBuddies.getAppContext().getSharedPreferences(SharedPrefFiles.CUSTOMIZE_SETTINGS.toString(), 0);
+        return MyApplication.getAppContext().getSharedPreferences(SharedPrefFiles.CUSTOMIZE_SETTINGS.toString(), 0);
     }
 
     private static int getDefaultValue(SharedPrefKeys prefKey) {
         int defaultValue = 0;
         switch (prefKey) {
             case GAP_PROGRESS:
-                defaultValue = ListBuddies.getAppContext().getResources().getDimensionPixelSize(R.dimen.default_margin_between_lists);
+                defaultValue = MyApplication.getAppContext().getResources().getDimensionPixelSize(R.dimen.default_margin_between_lists);
                 break;
             case SPEED_PROGRESS:
                 defaultValue = ListBuddiesLayout.DEFAULT_SPEED;
                 break;
             case DIV_HEIGHT_PROGRESS:
-                defaultValue = ListBuddies.getAppContext().getResources().getDimensionPixelSize(R.dimen.default_margin_between_lists);
+                defaultValue = MyApplication.getAppContext().getResources().getDimensionPixelSize(R.dimen.default_margin_between_lists);
                 break;
         }
         return defaultValue;

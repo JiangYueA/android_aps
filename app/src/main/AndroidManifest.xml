@@ -40,6 +40,7 @@
         <activity android:name=".ScrollActivity"/>
         <activity android:name=".MyListActivity"/>
         <activity android:name=".BaseActivity"/>
+        <activity android:name=".views.jpardogo.activity.ui.MainActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

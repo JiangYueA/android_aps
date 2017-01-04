@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.jiangyue.androidap.views.jpardogo.activity.ui.AboutActivity;
+import com.example.jiangyue.androidap.views.jpardogo.activity.ui.*;
 
 /**
  * Created by jiangyue on 16/12/26.
@@ -78,6 +78,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
             case R.id.btn_photo: {
                 //图片移动
                 Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_photo_move: {
+                //滚动图片
+                Intent intent = new Intent(this, com.example.jiangyue.androidap.views.jpardogo.activity.ui.MainActivity.class);
                 startActivity(intent);
                 break;
             }
