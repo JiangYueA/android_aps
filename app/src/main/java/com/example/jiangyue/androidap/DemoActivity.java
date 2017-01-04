@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.jiangyue.androidap.views.jpardogo.activity.ui.AboutActivity;
+
 /**
  * Created by jiangyue on 16/12/26.
  */
@@ -70,6 +72,12 @@ public class DemoActivity extends Activity implements View.OnClickListener {
             case R.id.btn_list_effect: {
                 //列表滚动效果
                 Intent intent = new Intent(this, AppearanceExamplesActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_photo: {
+                //图片移动
+                Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
             }

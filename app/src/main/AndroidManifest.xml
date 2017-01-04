@@ -61,6 +61,8 @@
                 android:value=".views.jpardogo.activity.ui.MainActivity" />
         </activity>
         <activity
+            android:name=".views.jpardogo.activity.ui.BaseActivity" />
+        <activity
             android:name=".AppearanceExamplesActivity"
             android:label="@string/appearance" />
     </application>
