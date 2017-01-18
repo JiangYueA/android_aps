@@ -1,38 +1,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical">
+    android:paddingRight="16dp">
 
     <ImageView
         android:id="@+id/iv_drawable"
         android:layout_width="match_parent"
         android:layout_height="256dip"
-        android:padding="12dip"
-        />
+        android:padding="12dip" />
 
     <Button
         android:id="@+id/bt_style_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1"/>
+        android:text="1" />
 
     <Button
         android:id="@+id/bt_style_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2"/>
+        android:text="2" />
 
     <Button
         android:id="@+id/bt_style_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="3"/>
+        android:text="3" />
 
     <Button
         android:id="@+id/bt_style_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="4"/>
+        android:text="4" />
+
+    <com.example.jiangyue.androidap.views.imageview.GradientImageView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        app:barPos="4" />
+
 </LinearLayout>

@@ -60,4 +60,8 @@
     <declare-styleable name="LinearScrollLayout">
         <attr name="navigationHeight" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="GradientImageView">
+        <attr name="barPos" format="integer" />
+    </declare-styleable>
 </resources>

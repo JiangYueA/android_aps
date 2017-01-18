@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.jiangyue.androidap.util.DisplayUtil;
 import com.example.jiangyue.androidap.views.jpardogo.activity.ui.*;
 
 /**
@@ -16,6 +17,7 @@ public class DemoActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
+        DisplayUtil.init(this);
     }
 
     @Override
@@ -85,6 +87,10 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 //滚动图片
                 Intent intent = new Intent(this, com.example.jiangyue.androidap.views.jpardogo.activity.ui.MainActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case R.id.btn_other: {
+                //其他
                 break;
             }
         }
