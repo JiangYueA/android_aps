@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 显示顶层浮窗 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".MyApplication"
@@ -40,6 +42,7 @@
         <activity android:name=".ScrollActivity"/>
         <activity android:name=".MyListActivity"/>
         <activity android:name=".BaseActivity"/>
+        <activity android:name=".WindowManagerActivity"/>
         <activity android:name=".views.jpardogo.activity.ui.MainActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
