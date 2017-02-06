@@ -89,7 +89,7 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_other: {
+            case R.id.btn_window_manager: {
                 //WindowManager应用
                 Intent intent = new Intent(this,WindowManagerActivity.class);
                 startActivity(intent);
