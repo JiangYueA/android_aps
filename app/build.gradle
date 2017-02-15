@@ -11,6 +11,13 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            moduleName "blur" // <-- This is the name of my C++ module!
+            ldLibs "EGL", "GLESv3", "dl", "log", "jnigraphics" // Link with these libraries!
+            stl "stlport_shared"
+        }
     }
     buildTypes {
         release {
@@ -28,7 +35,44 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/libs','src/main/jniLibs']
+        }
+    }
 }
+
+task ndkBuild(type: Exec, description: 'Compile JNI source with NDK') {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def ndkDir = properties.getProperty('ndk.dir')
+
+    if (org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)) {
+        commandLine "$ndkDir/ndk-build.cmd", '-C', file('src/main/jni').absolutePath
+    } else {
+        commandLine "$ndkDir/ndk-build", '-C', file('src/main/jni').absolutePath
+    }
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn ndkBuild
+}
+
+task ndkClean(type: Exec, description: 'Clean NDK Binaries') {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def ndkDir = properties.getProperty('ndk.dir')
+
+    if (org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)) {
+        commandLine "$ndkDir/ndk-build.cmd",'clean', '-C', file('src/main/jni').absolutePath
+    } else {
+        commandLine "$ndkDir/ndk-build",'clean', '-C', file('src/main/jni').absolutePath
+    }
+}
+
+clean.dependsOn 'ndkClean'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -46,6 +90,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
     compile files('libs/Rong_IMKit_v2_4_9.jar')
+    compile 'com.rmtheis:tess-two:6.2.0'
+    compile 'io.card:android-sdk:5.5.0'
     /* nuwa */
 //    compile 'cn.jiajixin.nuwa:nuwa:1.0.0'
 }

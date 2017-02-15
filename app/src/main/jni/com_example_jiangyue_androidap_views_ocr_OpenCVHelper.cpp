@@ -7,12 +7,12 @@ using namespace cv;
 
 extern "C" {
 
-JNIEXPORT jintArray JNICALL Java_cn_edu_zafu_opencv_OpenCVHelper_gray(
+JNIEXPORT jintArray JNICALL Java_com_example_jiangyue_androidap_views_ocr_OpenCVHelper_gray(
         JNIEnv *env, jclass obj, jintArray buf, int w, int h);
 
 
 
-JNIEXPORT jintArray JNICALL Java_cn_edu_zafu_opencv_OpenCVHelper_gray(
+JNIEXPORT jintArray JNICALL Java_com_example_jiangyue_androidap_views_ocr_OpenCVHelper_gray(
         JNIEnv *env, jclass obj, jintArray buf, int w, int h) {
 
     jint *cbuf;

@@ -9,6 +9,15 @@
     <!-- 显示顶层浮窗 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!-- 银行卡识别 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.screen.landscape"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -43,6 +52,8 @@
         <activity android:name=".MyListActivity"/>
         <activity android:name=".BaseActivity"/>
         <activity android:name=".WindowManagerActivity"/>
+        <activity android:name=".IOCardActivity"/>
+        <activity android:name=".IOTessCardActivity"/>
         <activity android:name=".views.jpardogo.activity.ui.MainActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"

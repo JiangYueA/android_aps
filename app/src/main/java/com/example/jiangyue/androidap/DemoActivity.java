@@ -91,8 +91,24 @@ public class DemoActivity extends Activity implements View.OnClickListener {
             }
             case R.id.btn_window_manager: {
                 //WindowManager应用
-                Intent intent = new Intent(this,WindowManagerActivity.class);
+                Intent intent = new Intent(this, WindowManagerActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case R.id.btn_card_io: {
+                //识别银行卡号
+                Intent intent = new Intent(this, IOCardActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_card_io2: {
+                //识别银行卡号2
+                Intent intent = new Intent(this, IOTessCardActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_other: {
+                //其他
                 break;
             }
         }
