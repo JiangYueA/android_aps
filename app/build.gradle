@@ -92,7 +92,10 @@ dependencies {
     compile files('libs/Rong_IMKit_v2_4_9.jar')
     compile 'com.rmtheis:tess-two:6.2.0'
     compile 'io.card:android-sdk:5.5.0'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
     /* nuwa */
 //    compile 'cn.jiajixin.nuwa:nuwa:1.0.0'
+    androidTestCompile 'junit:junit:4.12'
 }
 //apply plugin: "cn.jiajixin.nuwa"
