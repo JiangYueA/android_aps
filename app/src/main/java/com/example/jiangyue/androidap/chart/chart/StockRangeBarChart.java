@@ -21,6 +21,52 @@ public class StockRangeBarChart extends StockBarChart {
      */
     public static final String TYPE = StockRangeBarChart.class.getName();
 
+
+    /**
+     * The value
+     */
+    private double tempMinY;
+    private double tempMaxY;
+
+    public double getTempMinY() {
+        //获取缩放比例
+        int minX = (int) mainRender.getXAxisMin() * 4;
+        int maxX = (int) (mainRender.getXAxisMax() + 1) * 4;
+        tempMaxY = -1000000000000d;
+        tempMinY = 1000000000000d;
+        for (int j = minX; j < maxX; j++) {
+            if (mDataset.getSeriesAt(0).getXYMap().size() > j) {
+                double val = mDataset.getSeriesAt(0).getXYMap().getYByIndex(j);
+                if (val > tempMaxY) {
+                    tempMaxY = val;
+                }
+                if (val < tempMinY) {
+                    tempMinY = val;
+                }
+            }
+        }
+        return tempMinY;
+    }
+
+    public double getTempMaxY() {
+        return tempMaxY;
+    }
+
+    /**
+     * The main mrender;
+     */
+    private XYMultipleSeriesRenderer mainRender;
+    private double[] yPixelsPerUnit;
+
+    public void setMainRender(XYMultipleSeriesRenderer mainRender) {
+        this.mainRender = mainRender;
+    }
+
+    @Override
+    public void setYPixelsPerUnit(int seriesIndex, double[] yPixelsPerUnit) {
+        this.yPixelsPerUnit = yPixelsPerUnit;
+    }
+
     StockRangeBarChart() {
     }
 
@@ -62,6 +108,11 @@ public class StockRangeBarChart extends StockBarChart {
         if (startIndex > 0) {
             start = 2;
         }
+
+        //获取最新的val
+        double curTempMinY = tempMinY - (tempMaxY - tempMinY) * 0.4;
+        double curYPixelsPerUnit = ((getScreenR().bottom - getScreenR().top) / (tempMaxY - curTempMinY));
+
         for (int i = start; i < length; i += 8) {
             if (points.size() > i + 7) {
                 float xMin = points.get(i);
@@ -83,6 +134,14 @@ public class StockRangeBarChart extends StockBarChart {
                     paint.setColor(Color.parseColor("#4bbb59"));
                 } else {
                     paint.setColor(Color.parseColor("#d74c44"));
+                }
+
+                //重设value
+                if (yPixelsPerUnit != null && yPixelsPerUnit.length > 0) {
+                    yMin = getScreenR().bottom - (float) (((getScreenR().bottom - yMin) / yPixelsPerUnit[0] + mainRender.getYAxisMin() - curTempMinY) * curYPixelsPerUnit);
+                    yMax = getScreenR().bottom - (float) (((getScreenR().bottom - yMax) / yPixelsPerUnit[0] + mainRender.getYAxisMin() - curTempMinY) * curYPixelsPerUnit);
+                    kHigh = getScreenR().bottom - (float) (((getScreenR().bottom - kHigh) / yPixelsPerUnit[0] + mainRender.getYAxisMin() - curTempMinY) * curYPixelsPerUnit);
+                    kLow = getScreenR().bottom - (float) (((getScreenR().bottom - kLow) / yPixelsPerUnit[0] + mainRender.getYAxisMin() - curTempMinY) * curYPixelsPerUnit);
                 }
 
                 drawBar(canvas, xMin, yMin, xMax, yMax, halfDiffX, seriesNr, seriesIndex, paint);

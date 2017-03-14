@@ -44,6 +44,12 @@ public class StockChart extends XYChart {
     private int longitudeNum = 3;
     private int latitudeNum = 0;
 
+    /**
+     * The zoomY value
+     */
+    private double tempMinY;
+    private double tempMaxY;
+
     //设置分界线
     public double dividerLineVal01 = Float.NaN;
     public double dividerLineVal02 = Float.NaN;
@@ -93,6 +99,18 @@ public class StockChart extends XYChart {
                 newRenderer.setPointSize(renderer.getPointSize());
 
                 mCharts[i].setDatasetRenderer(newDataset, newRenderer);
+
+                if (mCharts[i] instanceof StockRangeBarChart) {
+                    ((StockRangeBarChart) mCharts[i]).setMainRender(renderer);
+                }
+
+                if (mCharts[i] instanceof StockLinearChart) {
+                    ((StockLinearChart) mCharts[i]).setMainRender(renderer);
+                    //设置线性参数
+                    if (chartDefinitions[i].seriesFlag != -1f) {
+                        ((StockLinearChart) mCharts[i]).setSeriesFlag(chartDefinitions[i].seriesFlag);
+                    }
+                }
             }
         }
     }
@@ -408,6 +426,12 @@ public class StockChart extends XYChart {
     }
 
     @Override
+    public void setYPixelsPerUnit(int seriesIndex, double[] yPixelsPerUnit) {
+        XYChart chart = getXYChart(seriesIndex);
+        chart.setYPixelsPerUnit(seriesIndex, yPixelsPerUnit);
+    }
+
+    @Override
     public void drawSeries(Canvas canvas, Paint paint, List<Float> points, XYSeriesRenderer seriesRenderer, float yAxisValue, int seriesIndex, int startIndex) {
         XYChart chart = getXYChart(seriesIndex);
         chart.setScreenR(getScreenR());
@@ -423,6 +447,18 @@ public class StockChart extends XYChart {
         XYChart chart = getXYChart(seriesIndex);
         chart.setScreenR(getScreenR());
         chart.setCalcRange(getCalcRange(mDataset.getSeriesAt(seriesIndex).getScaleNumber()), 0);
+
+        //设置参数
+        if (chart instanceof StockRangeBarChart) {
+            tempMinY = ((StockRangeBarChart) chart).getTempMinY();
+            tempMaxY = ((StockRangeBarChart) chart).getTempMaxY();
+        }
+
+        if (chart instanceof StockLinearChart) {
+            ((StockLinearChart) chart).setTempMinY(tempMinY);
+            ((StockLinearChart) chart).setTempMaxY(tempMaxY);
+        }
+
         chart.drawSeries(series, canvas, paint, pointsList, seriesRenderer, yAxisValue,
                 getChartSeriesIndex(seriesIndex), or, startIndex);
     }
@@ -476,6 +512,10 @@ public class StockChart extends XYChart {
          */
         private String type;
         /**
+         * The chart flag
+         */
+        private float seriesFlag = -1f;
+        /**
          * The series index.
          */
         private int[] seriesIndex;
@@ -488,6 +528,12 @@ public class StockChart extends XYChart {
          */
         public StockCombinedChartDef(String type, int... seriesIndex) {
             this.type = type;
+            this.seriesIndex = seriesIndex;
+        }
+
+        public StockCombinedChartDef(String type, float seriesFlag, int... seriesIndex) {
+            this.type = type;
+            this.seriesFlag = seriesFlag;
             this.seriesIndex = seriesIndex;
         }
 

@@ -314,6 +314,9 @@ public abstract class XYChart extends AbstractChart {
             points.add((float) (bottom - yPixelsPerUnit[scale] * (-minY[scale])));
           } else {
             if (points.size() > 0) {
+              //set yPixelsPerUnit
+              setYPixelsPerUnit(i,yPixelsPerUnit);
+              //draw series
               drawSeries(series, canvas, paint, points, seriesRenderer, yAxisValue, i, or,
                   startIndex);
               ClickableArea[] clickableAreasForSubSeries = clickableAreasForPoints(points, values,
@@ -347,6 +350,9 @@ public abstract class XYChart extends AbstractChart {
         }
 
         if (points.size() > 0) {
+          //set yPixelsPerUnit
+          setYPixelsPerUnit(i,yPixelsPerUnit);
+          //draw series
           drawSeries(series, canvas, paint, points, seriesRenderer, yAxisValue, i, or, startIndex);
           ClickableArea[] clickableAreasForSubSeries = clickableAreasForPoints(points, values,
               yAxisValue, i, startIndex);

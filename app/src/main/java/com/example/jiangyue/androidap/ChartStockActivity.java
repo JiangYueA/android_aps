@@ -485,7 +485,7 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
         }
 
         //设置颜色其他熟悉下
-        int[] colors = new int[]{Color.rgb(183, 147, 100), Color.rgb(124, 153, 184), Color.rgb(183, 147, 100), Color.rgb(183, 147, 100)};
+        int[] colors = new int[]{Color.rgb(124, 153, 184), Color.rgb(183, 147, 100), Color.rgb(183, 147, 100), Color.rgb(183, 147, 100)};
         PointStyle[] styles = new PointStyle[]{PointStyle.POINT, PointStyle.POINT, PointStyle.POINT, PointStyle.POINT};
         XYMultipleSeriesRenderer renderer = ChartFactory.buildRenderer(colors, styles);
         int length = renderer.getSeriesRendererCount();
@@ -520,16 +520,16 @@ public class ChartStockActivity extends Activity implements View.OnClickListener
         renderer.setYLabelsAlign(Paint.Align.LEFT);
 
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        dataset.addSeries(series00);
         dataset.addSeries(series01.toXYSeries());
+        dataset.addSeries(series00);
         dataset.addSeries(series02);
         dataset.addSeries(series03);
 
         StockChart.StockCombinedChartDef[] types = new StockChart.StockCombinedChartDef[]{
-                new StockChart.StockCombinedChartDef(StockLinearChart.TYPE, 0),
-                new StockChart.StockCombinedChartDef(StockRangeBarChart.TYPE, 1),
+                new StockChart.StockCombinedChartDef(StockRangeBarChart.TYPE, 0),
+                new StockChart.StockCombinedChartDef(StockLinearChart.TYPE, 1),
                 new StockChart.StockCombinedChartDef(StockBarChart.TYPE, 2),
-                new StockChart.StockCombinedChartDef(StockLinearChart.TYPE, 3)};
+                new StockChart.StockCombinedChartDef(StockLinearChart.TYPE, 0.3f, 3)};
         StockChart chart = new StockChart(dataset, renderer, types);
         //成交量虚线与成交量与实时时价实线
 //        chart.setShowTradeBar(false);

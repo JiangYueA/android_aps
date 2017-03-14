@@ -16,12 +16,53 @@ import java.util.List;
  * Created by jiangyue on 16/10/24.
  */
 public class StockLinearChart extends XYChart {
-    /** The constant to identify this chart type. */
+    /**
+     * The constant to identify this chart type.
+     */
     public static final String TYPE = "Line";
-    /** The legend shape width. */
+    /**
+     * The legend shape width.
+     */
     private static final int SHAPE_WIDTH = 30;
-    /** The scatter chart to be used to draw the data points. */
+    /**
+     * The scatter chart to be used to draw the data points.
+     */
     private ScatterChart pointsChart;
+
+    /**
+     * The main mrender;
+     */
+    private XYMultipleSeriesRenderer mainRender;
+    private double[] yPixelsPerUnit;
+
+    /**
+     * The value
+     */
+    private double tempMinY;
+    private double tempMaxY;
+    private float seriesFlag = 0.4f;
+
+    public void setMainRender(XYMultipleSeriesRenderer mainRender) {
+        this.mainRender = mainRender;
+    }
+
+    public void setTempMinY(double tempMinY) {
+        this.tempMinY = tempMinY;
+    }
+
+    public void setTempMaxY(double tempMaxY) {
+        this.tempMaxY = tempMaxY;
+    }
+
+    public void setSeriesFlag(float seriesFlag) {
+        this.seriesFlag = seriesFlag;
+    }
+
+    @Override
+    public void setYPixelsPerUnit(int seriesIndex, double[] yPixelsPerUnit) {
+        this.yPixelsPerUnit = yPixelsPerUnit;
+    }
+
 
     StockLinearChart() {
     }
@@ -29,7 +70,7 @@ public class StockLinearChart extends XYChart {
     /**
      * Builds a new line chart instance.
      *
-     * @param dataset the multiple series dataset
+     * @param dataset  the multiple series dataset
      * @param renderer the multiple series renderer
      */
     public StockLinearChart(XYMultipleSeriesDataset dataset, XYMultipleSeriesRenderer renderer) {
@@ -40,7 +81,7 @@ public class StockLinearChart extends XYChart {
     /**
      * Sets the series and the renderer.
      *
-     * @param dataset the series dataset
+     * @param dataset  the series dataset
      * @param renderer the series renderer
      */
     protected void setDatasetRenderer(XYMultipleSeriesDataset dataset,
@@ -52,12 +93,12 @@ public class StockLinearChart extends XYChart {
     /**
      * The graphical representation of a series.
      *
-     * @param canvas the canvas to paint to
-     * @param paint the paint to be used for drawing
-     * @param points the array of points to be used for drawing the series
-     * @param yAxisValue the minimum value of the y axis
+     * @param canvas      the canvas to paint to
+     * @param paint       the paint to be used for drawing
+     * @param points      the array of points to be used for drawing the series
+     * @param yAxisValue  the minimum value of the y axis
      * @param seriesIndex the index of the series currently being drawn
-     * @param startIndex the start index of the rendering points
+     * @param startIndex  the start index of the rendering points
      */
     @Override
     public void drawSeries(Canvas canvas, Paint paint, List<Float> points, XYSeriesRenderer renderer,
@@ -65,6 +106,44 @@ public class StockLinearChart extends XYChart {
         float lineWidth = paint.getStrokeWidth();
         paint.setStrokeWidth(renderer.getLineWidth());
         final XYSeriesRenderer.FillOutsideLine[] fillOutsideLine = renderer.getFillOutsideLine();
+
+        //获取成交量最大最下值
+        if (seriesFlag == 0.4f) {
+            double tempTradeMaxY = -1000000000000d;
+            double tempTradeMinY = 1000000000000d;
+            int minX = (int) mainRender.getXAxisMin();
+            int maxX = (int) mainRender.getXAxisMax();
+            if (seriesFlag != 0.4f) {
+                for (int j = minX; j < maxX; j++) {
+                    double val = mDataset.getSeriesAt(0).getXYMap().getYByIndex(j);
+                    if (val > tempTradeMaxY) {
+                        tempTradeMaxY = val;
+                    }
+                    if (val < tempTradeMinY) {
+                        tempTradeMinY = val;
+                    }
+                }
+            }
+
+            //获取最新的val
+            // TODO seriesFlag 原先使用seriesFlag作为temp的系数
+            double curTempMinY = tempMinY - (tempMaxY - tempMinY) * 0.4f;
+            double curYPixelsPerUnit = ((getScreenR().bottom - getScreenR().top) / (tempMaxY - curTempMinY));
+            double baseTradeValue = (0.4 - 0.1) * (tempMaxY - tempMinY) / (tempTradeMaxY - tempTradeMinY);
+
+            //重设points值
+            for (int i = 0, length = points.size(); i < length; i += 2) {
+                if (points.size() > i + 1 && mDataset.getSeriesAt(0).getXYMap().size() > minX + i / 2) {
+                    if (yPixelsPerUnit != null && yPixelsPerUnit.length > 0) {
+                        double value = mDataset.getSeriesAt(0).getXYMap().getYByIndex(minX + i / 2);
+                        //成交量转换
+                        value = seriesFlag != 0.4f ? (curTempMinY + (value - tempTradeMinY) * baseTradeValue) : value;
+                        //坐标点转换
+                        points.set(i + 1, getScreenR().bottom - (float) ((value - curTempMinY) * curYPixelsPerUnit));
+                    }
+                }
+            }
+        }
 
         for (XYSeriesRenderer.FillOutsideLine fill : fillOutsideLine) {
             if (fill.getType() != XYSeriesRenderer.FillOutsideLine.Type.NONE) {
@@ -199,12 +278,12 @@ public class StockLinearChart extends XYChart {
     /**
      * The graphical representation of the legend shape.
      *
-     * @param canvas the canvas to paint to
-     * @param renderer the series renderer
-     * @param x the x value of the point the shape should be drawn at
-     * @param y the y value of the point the shape should be drawn at
+     * @param canvas      the canvas to paint to
+     * @param renderer    the series renderer
+     * @param x           the x value of the point the shape should be drawn at
+     * @param y           the y value of the point the shape should be drawn at
      * @param seriesIndex the series index
-     * @param paint the paint to be used for drawing
+     * @param paint       the paint to be used for drawing
      */
     public void drawLegendShape(Canvas canvas, SimpleSeriesRenderer renderer, float x, float y,
                                 int seriesIndex, Paint paint) {

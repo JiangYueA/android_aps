@@ -53,6 +53,15 @@ public abstract class AbstractChart implements Serializable {
   public abstract void draw(Canvas canvas, int x, int y, int width, int height, Paint paint);
 
   /**
+   * set YPixelsPerUnit
+   * @param seriesIndex
+   * @param yPixelsPerUnit
+   */
+  public void setYPixelsPerUnit(int seriesIndex,double[] yPixelsPerUnit){
+
+  }
+
+  /**
    * Draws the chart background.
    * 
    * @param renderer the chart renderer
