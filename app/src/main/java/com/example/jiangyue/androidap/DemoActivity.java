@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.jiangyue.androidap.algorithm.lifegame.LifeGameActivity;
 import com.example.jiangyue.androidap.util.DisplayUtil;
 import com.example.jiangyue.androidap.views.jpardogo.activity.ui.*;
 
@@ -107,8 +108,10 @@ public class DemoActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_other: {
-                //其他
+            case R.id.btn_life_game: {
+                //生命算法
+                Intent intent = new Intent(this, LifeGameActivity.class);
+                startActivity(intent);
                 break;
             }
         }
