@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.jiangyue.androidap.algorithm.lifegame.LifeGameView
+        android:id="@+id/lifeg_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_start_game"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="开始生命游戏" />
+
+</LinearLayout>

@@ -59,6 +59,7 @@
         <activity android:name=".IOCardActivity"/>
         <activity android:name=".IOTessCardActivity"/>
         <activity android:name=".views.jpardogo.activity.ui.MainActivity"/>
+        <activity android:name=".algorithm.lifegame.LifeGameActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -99,6 +100,17 @@
                 <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
                 <!--android:resource="@xml/provider_paths"/>-->
         <!--</provider>-->
+
+        <!-- xposed hook -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="hook test" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="54" />
 
     </application>
 
